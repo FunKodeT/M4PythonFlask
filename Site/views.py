@@ -41,8 +41,9 @@ def home():
 #region <DELETE> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->/
 #v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/v\/--/
 def delete_note():
+    print('read me')
     note = json.loads(request.data)
-    noteId = note['note']
+    noteId = note['noteId']
     note = Note.query.get(noteId)
     if note:
         if note.user_id == current_user.id:

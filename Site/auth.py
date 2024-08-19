@@ -87,10 +87,10 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password is too short, must be longer than 7 characters', category='warning')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password, method='sha256'))
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password, method='pbkdf2', salt_length=16))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('Account was successfully created, welcome!', category='success')
             return redirect(url_for('views.home'))
 
